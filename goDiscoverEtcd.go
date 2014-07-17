@@ -4,17 +4,19 @@ package goDiscoverEtcd
 import "net/http"
 import "io/ioutil"
 
-// GetURL issues a GET request against the URL https://discovery.etcd.io/new
+// GetDiscoveryURL issues a GET request against the URL https://discovery.etcd.io/new
 // returns a string containing your specific URL.
 // returns a string of zero length if it has a error
-func GetURL() string {
+func GetDiscoveryURL() string {
 
-	url := "https://discovery.etcd.io/new"
-	resp, err := http.Get(url)
+	discoveryURL := "https://discovery.etcd.io/new"
+
+	resp, err := http.Get(discoveryURL)
+	defer resp.Body.Close()
+
 	if err != nil {
 		return ""
 	}
-	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
