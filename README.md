@@ -18,7 +18,7 @@ import "fmt"
 import "github.com/doublerr/goDiscoverEtcd"
 
 func main() {
-    url := goDiscoverEtcd.GetDiscoveryURL()
+    url := goDiscoverEtcd.GetDiscoveryURL(3)
     fmt.Printf(url)
 }
 ```
